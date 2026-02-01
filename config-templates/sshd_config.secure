@@ -1,0 +1,40 @@
+# Secure SSH Configuration for OpenClaw Server
+# Copy relevant lines to: /etc/ssh/sshd_config
+#
+# IMPORTANT: Test with `sudo sshd -t` before applying!
+# Keep an existing SSH session open when making changes!
+
+# Authentication
+PasswordAuthentication no
+PermitRootLogin no
+PubkeyAuthentication yes
+AuthenticationMethods publickey
+
+# Security hardening
+MaxAuthTries 3
+MaxSessions 3
+LoginGraceTime 30
+PermitEmptyPasswords no
+
+# Connection settings
+ClientAliveInterval 300
+ClientAliveCountMax 2
+TCPKeepAlive yes
+
+# Disable unused features
+X11Forwarding no
+AllowAgentForwarding no
+AllowTcpForwarding no
+PermitTunnel no
+GatewayPorts no
+PermitUserEnvironment no
+
+# Logging
+SyslogFacility AUTH
+LogLevel VERBOSE
+
+# Optional: Restrict to specific users (uncomment and modify)
+# AllowUsers ubuntu
+
+# Optional: Banner (create /etc/ssh/banner first)
+# Banner /etc/ssh/banner

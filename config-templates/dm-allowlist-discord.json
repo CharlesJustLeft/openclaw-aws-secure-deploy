@@ -1,0 +1,16 @@
+{
+  "_comment": "Add this 'dm' block inside your channels.discord section in ~/.openclaw/openclaw.json",
+  "_instructions": [
+    "1. Get your Discord User ID (Settings -> Advanced -> Developer Mode -> Right-click your name -> Copy User ID)",
+    "2. Edit ~/.openclaw/openclaw.json",
+    "3. Find the 'channels.discord' section",
+    "4. Add this 'dm' block (don't forget the comma after 'guilds': {})",
+    "5. Replace YOUR_DISCORD_USER_ID with your actual ID",
+    "6. Run: openclaw gateway restart"
+  ],
+  "dm": {
+    "enabled": true,
+    "policy": "allowlist",
+    "allowFrom": ["YOUR_DISCORD_USER_ID"]
+  }
+}

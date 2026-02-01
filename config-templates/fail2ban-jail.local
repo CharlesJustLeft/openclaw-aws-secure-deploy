@@ -1,0 +1,36 @@
+# fail2ban configuration for OpenClaw server
+# Copy to: /etc/fail2ban/jail.local
+
+[DEFAULT]
+# Ban for 1 hour
+bantime = 1h
+
+# Find failed attempts within 10 minutes
+findtime = 10m
+
+# Ban after 3 failed attempts
+maxretry = 3
+
+# Email notifications (optional - uncomment and configure)
+# destemail = your@email.com
+# sender = fail2ban@yourdomain.com
+# mta = sendmail
+# action = %(action_mwl)s
+
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+bantime = 3600
+
+# Optional: Add more aggressive banning for repeat offenders
+# [recidive]
+# enabled = true
+# filter = recidive
+# logpath = /var/log/fail2ban.log
+# action = iptables-allports[name=recidive]
+# bantime = 1w
+# findtime = 1d
+# maxretry = 5
