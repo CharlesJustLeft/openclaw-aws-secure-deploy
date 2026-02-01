@@ -20,6 +20,20 @@ Security researchers found [1,800+ exposed OpenClaw instances](https://www.shoda
 
 **This project fixes all of that.**
 
+### The Risk is Real
+
+Security researchers have been documenting these issues:
+
+> **[@dvulnresearch](https://x.com/dvulnresearch)** - Original security researcher who ran Shodan scans finding 1,800+ exposed instances with open gateway control planes.
+
+> **[@UK_Daniel_Card](https://x.com/UK_Daniel_Card)** & **[@lucatac0](https://x.com/lucatac0)** - Shared Shodan scans showing exposed instances and documented the attack surface.
+
+> **[@theonejvo](https://x.com/theonejvo)** - Posted about leaked API keys and the malicious "What Would Elon Do?" skill that exfiltrated data to external servers.
+
+> **[Cisco AI Defense Research](https://www.cisco.com)** - Found that cryptocurrency private keys could be extracted in under 5 minutes via crafted email prompt injection. Also discovered 26% of 31,000 skills analyzed had vulnerabilities.
+
+**The core problem:** OpenClaw collapses multiple trust boundaries into a single point of failure. It holds your messaging credentials, API keys, OAuth tokens, email access, file system access, and shell command execution. **If compromised once, attackers inherit everything.**
+
 ---
 
 ## Quick Start
@@ -29,7 +43,7 @@ Security researchers found [1,800+ exposed OpenClaw instances](https://www.shoda
 SSH into your fresh Ubuntu 24.04 EC2 instance and run:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/YOUR_USERNAME/openclaw-aws-secure-deploy/main/scripts/setup.sh | bash
+curl -sL https://raw.githubusercontent.com/CharlesJustLeft/openclaw-aws-secure-deploy/main/scripts/setup.sh | bash
 ```
 
 The script will:
@@ -45,7 +59,7 @@ The script will:
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/openclaw-aws-secure-deploy.git
+git clone https://github.com/CharlesJustLeft/openclaw-aws-secure-deploy.git
 cd openclaw-aws-secure-deploy
 
 # Deploy EC2 instance
@@ -165,8 +179,8 @@ Before starting, you need:
 
 ## Support
 
-- **Issues:** [GitHub Issues](https://github.com/YOUR_USERNAME/openclaw-aws-secure-deploy/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/YOUR_USERNAME/openclaw-aws-secure-deploy/discussions)
+- **Issues:** [GitHub Issues](https://github.com/CharlesJustLeft/openclaw-aws-secure-deploy/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/CharlesJustLeft/openclaw-aws-secure-deploy/discussions)
 - **OpenClaw Docs:** [docs.openclaw.ai](https://docs.openclaw.ai)
 
 ---
