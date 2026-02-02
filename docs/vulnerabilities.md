@@ -366,19 +366,23 @@ Tailscale provides its own service discovery within your private network.
 
 **Risk:** The bot remembers conversations across sessions. Over time, it accumulates sensitive data—passwords mentioned, financial discussions, medical info.
 
-**Our Solution:** The setup script adds a weekly cron job to clean up old sessions:
+**Our Solution:** This is a trade-off between security and functionality. Clearing sessions causes the bot to lose context and memory of past conversations.
 
-```bash
-# Cleans sessions older than 7 days every Sunday at 3 AM
-0 3 * * 0 find ~/.openclaw/agents/*/sessions -type f -mtime +7 -delete
-```
+**We do NOT automatically clear sessions** because:
+- Persistent memory is a core feature many users want
+- Deleting sessions causes "amnesia" - the bot forgets past projects and context
+- Users should make this decision consciously
 
-To manually clear all sessions:
+**If you want to clear sessions manually:**
 ```bash
+# Clear all sessions (bot loses all memory)
 rm -rf ~/.openclaw/agents/*/sessions/*
+
+# Clear sessions older than 30 days
+find ~/.openclaw/agents/*/sessions -type f -mtime +30 -delete
 ```
 
-To adjust retention period, modify the `-mtime +7` value (days).
+**Recommendation:** Be mindful of what sensitive information you share with the bot. Avoid sharing passwords, private keys, or financial details in conversations.
 
 ---
 

@@ -645,16 +645,13 @@ CHECK_SCRIPT
     
     # Setup cron jobs
     log "Setting up automated maintenance cron jobs..."
-    (crontab -l 2>/dev/null | grep -v "maintenance.sh\|openclaw security audit\|sessions.*mtime"; echo "# Weekly security maintenance (Sundays at 3 AM)
+    (crontab -l 2>/dev/null | grep -v "maintenance.sh\|openclaw security audit"; echo "# Weekly security maintenance (Sundays at 3 AM)
 0 3 * * 0 $HOME/maintenance.sh >> $HOME/.openclaw-maintenance.log 2>&1
 
 # Daily security audit (4 AM)
-0 4 * * * openclaw security audit --deep >> $HOME/.openclaw-audit.log 2>&1
-
-# Weekly session cleanup - remove sessions older than 7 days (Sundays at 3:30 AM)
-30 3 * * 0 find $HOME/.openclaw/agents/*/sessions -type f -mtime +7 -delete 2>/dev/null") | crontab -
+0 4 * * * openclaw security audit --deep >> $HOME/.openclaw-audit.log 2>&1") | crontab -
     
-    log "Cron jobs configured (including session cleanup)"
+    log "Cron jobs configured"
     
     save_state "COMPLETE"
     log "Phase 8 complete: Maintenance configured"
