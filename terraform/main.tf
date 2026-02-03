@@ -84,6 +84,15 @@ resource "aws_instance" "openclaw" {
     delete_on_termination = true
   }
 
+  # IMDSv2 enforcement - prevents credential theft via metadata service
+  # If any process can reach 169.254.169.254, it cannot steal IAM credentials
+  # without the required session token header
+  metadata_options {
+    http_tokens                 = "required"  # Enforce IMDSv2
+    http_put_response_hop_limit = 1           # Prevent container escape
+    http_endpoint               = "enabled"   # Keep metadata available
+  }
+
   # Enable detailed monitoring (optional, costs extra)
   monitoring = var.enable_detailed_monitoring
 
